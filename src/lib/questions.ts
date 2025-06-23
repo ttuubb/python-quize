@@ -63,4 +63,45 @@ print(my_list)`,
     answer: 'datetime',
     explanation: '`datetime` 模块提供了用于操作日期和时间的类。它提供了 `date`、`time`、`datetime` 和 `timedelta` 等类型。',
   },
+  {
+    id: 6,
+    category: '列表操作',
+    question: '哪个方法可以用来在列表末尾添加一个元素？',
+    options: ['add()', 'push()', 'append()', 'insert()'],
+    answer: 'append()',
+    explanation: '`append()` 方法用于将一个元素添加到列表的末尾。 `insert()` 方法可以在指定索引处添加元素。'
+  },
+  {
+    id: 7,
+    category: '字典',
+    question: '如何访问字典中键为 "name" 的值？',
+    code: 'my_dict = {"name": "小明", "age": 10}',
+    options: ['my_dict.name', 'my_dict("name")', 'my_dict["name"]', 'my_dict{"name"}'],
+    answer: 'my_dict["name"]',
+    explanation: '可以使用方括号 `[]` 和键来访问字典中的值。例如, `my_dict["name"]` 会返回 "小明"。'
+  },
+  {
+    id: 8,
+    category: '函数',
+    question: '在 Python 函数中，`*args` 的作用是什么？',
+    options: ['传递一个可变数量的关键字参数', '传递一个可变数量的位置参数', '表示所有参数都是必须的', '用于指针操作'],
+    answer: '传递一个可变数量的位置参数',
+    explanation: '`*args` 允许函数接受任意数量的位置参数。这些参数会被收集到一个元组（tuple）中。'
+  },
+  {
+    id: 9,
+    category: '模块',
+    question: '哪个关键字用于从一个模块中导入特定的函数或变量？',
+    options: ['import', 'from ... import ...', 'include', 'require'],
+    answer: 'from ... import ...',
+    explanation: '使用 `from <模块名> import <函数名>` 语法可以直接导入模块中的特定部分，这样在使用时就不需要模块名前缀。'
+  },
+  {
+    id: 10,
+    category: '面向对象',
+    question: '在 Python 类中，哪个方法是构造函数，在创建对象实例时被调用？',
+    options: ['__init__()', '__main__()', '__new__()', '__create__()'],
+    answer: '__init__()',
+    explanation: '`__init__()` 方法是类的构造函数或初始化方法。当从一个类创建新实例时，`__init__` 会被自动调用。'
+  }
 ];
