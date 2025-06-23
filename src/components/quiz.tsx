@@ -3,20 +3,20 @@
 import { useState, type FC } from 'react';
 import { Lightbulb, CheckCircle, XCircle, LoaderCircle, Sparkles } from 'lucide-react';
 
-import { questions } from '@/lib/questions';
+import { questions, type Question } from '@/lib/questions';
 import { getAIHint } from '@/app/actions';
+import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const Quiz: FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswer, setUserAnswer] = useState('');
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -24,13 +24,14 @@ const Quiz: FC = () => {
   const [isHintLoading, setIsHintLoading] = useState(false);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion: Question = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex) / questions.length) * 100;
 
-  const handleAnswerSubmit = () => {
+  const handleAnswerSelect = (option: string) => {
     if (isAnswered) return;
 
-    const isCorrect = userAnswer.trim().toLowerCase().includes(currentQuestion.answer.toLowerCase());
+    setSelectedAnswer(option);
+    const isCorrect = option === currentQuestion.answer;
 
     if (isCorrect) {
       setScore(score + 1);
@@ -44,7 +45,7 @@ const Quiz: FC = () => {
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setUserAnswer('');
+      setSelectedAnswer(null);
       setIsAnswered(false);
       setFeedback(null);
       setHint(null);
@@ -56,7 +57,7 @@ const Quiz: FC = () => {
   const handleRestartQuiz = () => {
     setCurrentQuestionIndex(0);
     setScore(0);
-    setUserAnswer('');
+    setSelectedAnswer(null);
     setIsAnswered(false);
     setFeedback(null);
     setHint(null);
@@ -118,14 +119,32 @@ const Quiz: FC = () => {
               <code>{currentQuestion.code}</code>
             </pre>
           )}
-          <Textarea
-            placeholder="Type your answer here..."
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-            disabled={isAnswered}
-            className="font-code text-base"
-            rows={3}
-          />
+          <div className="grid grid-cols-1 gap-3">
+            {currentQuestion.options.map((option, index) => {
+              const isCorrectAnswer = isAnswered && option === currentQuestion.answer;
+              const isIncorrectSelected = isAnswered && selectedAnswer === option && option !== currentQuestion.answer;
+
+              return (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="lg"
+                  className={cn(
+                    "justify-start text-left h-auto py-3 whitespace-normal",
+                    isCorrectAnswer && "border-2 border-chart-2 bg-chart-2/10 hover:bg-chart-2/20 text-chart-2",
+                    isIncorrectSelected && "border-2 border-destructive bg-destructive/10 hover:bg-destructive/20 text-destructive"
+                  )}
+                  onClick={() => handleAnswerSelect(option)}
+                  disabled={isAnswered}
+                >
+                  <span className="mr-4 font-bold text-muted-foreground">{String.fromCharCode(65 + index)}</span>
+                  <span className="font-code flex-1">{option}</span>
+                  {isCorrectAnswer && <CheckCircle className="h-5 w-5 ml-auto shrink-0" />}
+                  {isIncorrectSelected && <XCircle className="h-5 w-5 ml-auto shrink-0" />}
+                </Button>
+              );
+            })}
+          </div>
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-2">
           <Button variant="outline" onClick={handleGetHint} disabled={isAnswered || isHintLoading}>
@@ -136,13 +155,9 @@ const Quiz: FC = () => {
             )}
             Get a Hint
           </Button>
-          {isAnswered ? (
+          {isAnswered && (
             <Button onClick={handleNextQuestion} className="w-full sm:w-auto flex-grow">
-              Next Question
-            </Button>
-          ) : (
-            <Button onClick={handleAnswerSubmit} className="w-full sm:w-auto flex-grow">
-              Submit
+              {currentQuestionIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
             </Button>
           )}
         </CardFooter>
@@ -172,10 +187,6 @@ const Quiz: FC = () => {
           {feedback === 'correct' ? <CheckCircle className="h-4 w-4 text-chart-2" /> : <XCircle className="h-4 w-4" />}
           <AlertTitle className={feedback === 'correct' ? 'text-chart-2' : ''}>{feedback === 'correct' ? 'Correct!' : 'Incorrect'}</AlertTitle>
           <AlertDescription>
-            <strong>The correct answer is:</strong>
-            <pre className="mt-2 bg-background/50 p-2 rounded-md font-code text-sm">
-              <code>{currentQuestion.answer}</code>
-            </pre>
             <p className="mt-2">{currentQuestion.explanation}</p>
           </AlertDescription>
         </Alert>
