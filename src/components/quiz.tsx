@@ -75,7 +75,7 @@ const Quiz: FC = () => {
       setHint(generatedHint);
     } catch (error) {
       console.error(error);
-      setHint('Could not fetch a hint at this time.');
+      setHint('暂时无法获取提示。');
     } finally {
       setIsHintLoading(false);
     }
@@ -85,16 +85,16 @@ const Quiz: FC = () => {
     return (
       <Card className="w-full max-w-2xl mx-auto shadow-2xl animate-in fade-in-50 zoom-in-95">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">Quiz Complete!</CardTitle>
-          <CardDescription className="text-lg">You've reached the end of the quiz.</CardDescription>
+          <CardTitle className="text-3xl font-bold">问答完成！</CardTitle>
+          <CardDescription className="text-lg">您已完成所有题目。</CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-          <p className="text-4xl font-headline mb-4">Your Final Score: <span className="text-primary font-bold">{score} / {questions.length}</span></p>
-          <p className="text-muted-foreground">Great job! Keep practicing to master Python.</p>
+          <p className="text-4xl font-headline mb-4">你的最终得分: <span className="text-primary font-bold">{score} / {questions.length}</span></p>
+          <p className="text-muted-foreground">干得漂亮！继续练习以精通 Python。</p>
         </CardContent>
         <CardFooter>
           <Button onClick={handleRestartQuiz} className="w-full text-lg py-6">
-            Restart Quiz
+            重新开始问答
           </Button>
         </CardFooter>
       </Card>
@@ -107,7 +107,7 @@ const Quiz: FC = () => {
         <CardHeader>
           <div className="flex justify-between items-start">
             <div>
-              <CardDescription>Question {currentQuestionIndex + 1} of {questions.length}</CardDescription>
+              <CardDescription>第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</CardDescription>
               <CardTitle className="text-2xl font-headline mt-1">{currentQuestion.question}</CardTitle>
             </div>
             <Badge variant="secondary">{currentQuestion.category}</Badge>
@@ -153,11 +153,11 @@ const Quiz: FC = () => {
             ) : (
               <Lightbulb />
             )}
-            Get a Hint
+            获取提示
           </Button>
           {isAnswered && (
             <Button onClick={handleNextQuestion} className="w-full sm:w-auto flex-grow">
-              {currentQuestionIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+              {currentQuestionIndex === questions.length - 1 ? '完成问答' : '下一题'}
             </Button>
           )}
         </CardFooter>
@@ -166,7 +166,7 @@ const Quiz: FC = () => {
       {isHintLoading && !hint && (
         <Alert>
           <Sparkles className="h-4 w-4 text-primary" />
-          <AlertTitle>Generating Hint</AlertTitle>
+          <AlertTitle>正在生成提示</AlertTitle>
           <AlertDescription>
             <Skeleton className="h-4 w-3/4 mt-2" />
             <Skeleton className="h-4 w-1/2 mt-2" />
@@ -177,7 +177,7 @@ const Quiz: FC = () => {
       {hint && !isHintLoading && (
         <Alert>
           <Lightbulb className="h-4 w-4 text-accent" />
-          <AlertTitle className="font-bold text-accent">AI Hint</AlertTitle>
+          <AlertTitle className="font-bold text-accent">AI 提示</AlertTitle>
           <AlertDescription>{hint}</AlertDescription>
         </Alert>
       )}
@@ -185,7 +185,7 @@ const Quiz: FC = () => {
       {isAnswered && feedback && (
         <Alert variant={feedback === 'correct' ? 'default' : 'destructive'} className={feedback === 'correct' ? 'border-chart-2' : ''}>
           {feedback === 'correct' ? <CheckCircle className="h-4 w-4 text-chart-2" /> : <XCircle className="h-4 w-4" />}
-          <AlertTitle className={feedback === 'correct' ? 'text-chart-2' : ''}>{feedback === 'correct' ? 'Correct!' : 'Incorrect'}</AlertTitle>
+          <AlertTitle className={feedback === 'correct' ? 'text-chart-2' : ''}>{feedback === 'correct' ? '回答正确！' : '回答错误'}</AlertTitle>
           <AlertDescription>
             <p className="mt-2">{currentQuestion.explanation}</p>
           </AlertDescription>
@@ -194,8 +194,8 @@ const Quiz: FC = () => {
       
       <div className="space-y-2">
         <div className="flex justify-between text-sm text-muted-foreground">
-          <span>Progress</span>
-          <span>Score: {score}/{questions.length}</span>
+          <span>进度</span>
+          <span>得分: {score}/{questions.length}</span>
         </div>
         <Progress value={progress} className="w-full" />
       </div>

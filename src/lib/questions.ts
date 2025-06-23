@@ -11,56 +11,56 @@ export type Question = {
 export const questions: Question[] = [
   {
     id: 1,
-    category: 'Data Structures',
-    question: 'What is the time complexity of adding an element to a hash set on average?',
+    category: '数据结构',
+    question: '平均情况下，向哈希集合添加一个元素的时间复杂度是多少？',
     options: ['O(1)', 'O(n)', 'O(log n)', 'O(n^2)'],
     answer: 'O(1)',
-    explanation: 'On average, hash set operations (add, remove, and contains) have a time complexity of O(1). This is because they use a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.',
+    explanation: '平均而言，哈希集合操作（添加、删除和包含）的时间复杂度为 O(1)。这是因为它们使用哈希函数来计算存储桶或插槽数组的索引，从而可以找到所需的值。',
   },
   {
     id: 2,
-    category: 'Algorithms',
-    question: 'What is the most "Pythonic" way to reverse a string in Python?',
+    category: '算法',
+    question: '在 Python 中，反转字符串最“Pythonic”的方式是什么？',
     code: `def reverse_string(s):
-  # Complete the function
+  # 完成这个函数
   return`,
-    options: ['s.reverse()', 'reversed(s)', 's[::-1]', 'A for loop'],
+    options: ['s.reverse()', 'reversed(s)', 's[::-1]', 'for 循环'],
     answer: "s[::-1]",
-    explanation: 'The slice notation `[::-1]` is the most concise and Pythonic way to reverse a string. It creates a new string that is a reversed copy of the original. `s.reverse()` is for lists, and `reversed(s)` returns an iterator.',
+    explanation: '切片表示法 `[::-1]` 是反转字符串最简洁、最 Pythonic 的方式。它会创建一个原始字符串的反向副本新字符串。`s.reverse()` 用于列表，而 `reversed(s)` 返回一个迭代器。',
   },
   {
     id: 3,
-    category: 'Syntax & Semantics',
-    question: 'What will be the output of the following Python code?',
+    category: '语法与语义',
+    question: '以下 Python 代码的输出结果是什么？',
     code: `my_list = [1, 2, 3]
 def change_list(lst):
   lst.append(4)
 
 change_list(my_list)
 print(my_list)`,
-    options: ['[1, 2, 3]', '[1, 2, 3, 4]', 'None', 'A TypeError occurs'],
+    options: ['[1, 2, 3]', '[1, 2, 3, 4]', 'None', '出现 TypeError'],
     answer: '[1, 2, 3, 4]',
-    explanation: 'In Python, lists are mutable objects. When you pass a list to a function, you are passing a reference to the list. Therefore, any modifications made to the list inside the function will affect the original list.',
+    explanation: '在 Python 中，列表是可变对象。当你将列表传递给函数时，你传递的是对列表的引用。因此，在函数内部对列表所做的任何修改都会影响原始列表。',
   },
   {
     id: 4,
-    category: 'Error Debugging',
-    question: 'The following code is intended to calculate the sum of numbers from 1 to n, but it contains an error. Identify the fix.',
+    category: '错误调试',
+    question: '以下代码旨在计算从 1 到 n 的数字之和，但它包含一个错误。请找出修正方法。',
     code: `def sum_up_to(n):
   total = 0
   for i in range(n):
     total += i
   return total`,
-    options: ['The loop should be `range(1, n + 1)`', 'Initialize `total` to 1', 'The return statement is indented incorrectly', 'Use `total = total + i`'],
-    answer: 'The loop should be `range(1, n + 1)`',
-    explanation: 'The `range(n)` function generates numbers from 0 up to n-1. To calculate the sum from 1 to n, the loop should iterate from 1 up to and including n, which is achieved with `range(1, n + 1)`.',
+    options: ['循环应该是 `range(1, n + 1)`', '将 `total` 初始化为 1', 'return 语句缩进不正确', '使用 `total = total + i`'],
+    answer: '循环应该是 `range(1, n + 1)`',
+    explanation: '`range(n)` 函数生成从 0 到 n-1 的数字。要计算从 1 到 n 的总和，循环应从 1 迭代到 n（包括 n），这可以通过 `range(1, n + 1)` 实现。',
   },
   {
     id: 5,
-    category: 'Standard Library',
-    question: 'Which module in the Python standard library would you use to work with dates and times?',
+    category: '标准库',
+    question: '你会使用 Python 标准库中的哪个模块来处理日期和时间？',
     options: ['time', 'date', 'calendar', 'datetime'],
     answer: 'datetime',
-    explanation: 'The `datetime` module supplies classes for manipulating dates and times. It provides types like `date`, `time`, `datetime`, and `timedelta`.',
+    explanation: '`datetime` 模块提供了用于操作日期和时间的类。它提供了 `date`、`time`、`datetime` 和 `timedelta` 等类型。',
   },
 ];

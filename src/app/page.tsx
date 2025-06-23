@@ -9,7 +9,7 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <PythonIcon className="h-8 w-8" />
             <h1 className="text-2xl font-bold font-headline text-primary">
-              PyQuizMaster
+              Python 知识问答
             </h1>
           </div>
         </div>
@@ -19,7 +19,7 @@ export default function Home() {
       </main>
       <footer className="py-4 border-t">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} PyQuizMaster. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Python 知识问答. 版权所有.</p>
         </div>
       </footer>
     </div>
