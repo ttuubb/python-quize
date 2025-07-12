@@ -1,22 +1,80 @@
-# Python 知识问答
+# Python Quiz Application
 
-这是一个使用 Next.js 和 Firebase Studio 构建的 AI 驱动的 Python 测验应用。
+Welcome to the Python Quiz Application! This project is designed to help you test and improve your Python knowledge through interactive quizzes. It's built using Next.js for the frontend and incorporates AI capabilities to generate questions and hints.
 
-## 功能
+[Read this README in Chinese (中文版)](./README.zh-CN.md)
 
-*   **动态题目生成**: 利用 Google Gemini API 动态生成多项选择题，每次测验都带来全新体验。
-*   **AI 提示**: 如果您遇到困难，可以向 AI 请求提示。
-*   **即时反馈**: 回答问题后立即获得正确答案和详细解释。
-*   **进度跟踪**: 查看您的分数和测验进度。
+## ✨ Features
 
-## 技术栈
+*   **Interactive Quizzes**: Engage with a variety of Python questions.
+*   **AI-Powered Question Generation**: Questions are dynamically generated to provide a fresh experience.
+*   **Intelligent Hints**: Get helpful hints when you're stuck, powered by AI.
+*   **User-Friendly Interface**: A clean and intuitive design built with Shadcn UI components.
 
-*   [Next.js](https://nextjs.org/) (React 框架)
-*   [Genkit (Firebase AI)](https://firebase.google.com/docs/genkit)
-*   [Tailwind CSS](https://tailwindcss.com/)
-*   [ShadCN UI](https://ui.shadcn.com/)
-*   TypeScript
+## 🚀 Getting Started
 
-## 如何开始
+Follow these steps to get the project up and running on your local machine.
 
-要开始使用，请查看 `src/app/page.tsx`，这是应用程序的主页面。
+### Prerequisites
+
+Before you begin, ensure you have the following software installed:
+
+*   **Node.js**: This project uses Node.js (which includes npm). You can download it from [nodejs.org](https://nodejs.org/). It's recommended to use the LTS version.
+*   **npm** (Node Package Manager) or **Yarn**: npm comes with Node.js. If you prefer Yarn, you can install it via `npm install -g yarn`.
+
+### Installation
+
+1.  **Clone the repository**:
+    Open your terminal or command prompt and run the following command to clone the project to your local machine:
+    ```bash
+    git clone https://github.com/your-username/python-quize.git
+    # Replace `your-username/python-quize` with the actual repository URL if different
+    ```
+2.  **Navigate into the project directory**:
+    ```bash
+    cd python-quize
+    ```
+3.  **Install dependencies**:
+    Use npm or Yarn to install the required packages:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+### Running the Application
+
+Once the dependencies are installed, you can start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+This command will start the Next.js development server. You can then open your web browser and navigate to `http://localhost:3000` to see the application in action.
+
+## 📂 Project Structure
+
+Here's a brief overview of the main directories in this project:
+
+*   `src/app/`: Contains the main Next.js application pages and layout.
+*   `src/components/`: Reusable React components, including UI components from Shadcn UI (`src/components/ui/`).
+*   `src/ai/`: Houses the AI-related logic, including Genkit configurations and AI flows for question and hint generation.
+*   `src/lib/`: Utility functions, types, and question data.
+*   `public/`: Static assets like images and `favicon.ico`.
+
+## 🤝 Contributing
+
+We welcome contributions! If you'd like to contribute, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/your-feature-name`).
+3.  Make your changes.
+4.  Commit your changes (`git commit -m 'feat: Add new feature'`).
+5.  Push to the branch (`git push origin feature/your-feature-name`).
+6.  Open a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the `LICENSE` file for details (if applicable, create one if not present).
